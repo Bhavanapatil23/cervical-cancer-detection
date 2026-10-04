@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/><title>Dashboard - CervixGuard AI</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet"><script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script><style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:Inter,sans-serif;background:#0f0a1e;min-height:100vh;color:#fff}body::before{content:'';position:fixed;inset:0;background:radial-gradient(ellipse 70% 50% at 20% 20%,rgba(124,58,237,.15) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 80% 80%,rgba(219,39,119,.12) 0%,transparent 60%);pointer-events:none;z-index:0}.navbar{position:sticky;top:0;z-index:100;background:rgba(15,10,30,.8);backdrop-filter:blur(20px);border-bottom:1px solid rgba(255,255,255,.07);padding:.9rem 2rem;display:flex;align-items:center;justify-content:space-between}.nav-logo{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,#7c3aed,#db2777);display:flex;align-items:center;justify-content:center;font-size:1rem;margin-right:.6rem}.nav-brand{display:flex;align-items:center}.nav-brand h1{font-size:1rem;font-weight:700;color:#fff}.nav-brand span{font-size:.65rem;color:rgba(255,255,255,.3);display:block}.nav-links a{text-decoration:none;color:rgba(255,255,255,.45);font-size:.78rem;font-weight:500;padding:.35rem .75rem;border-radius:7px;margin-left:.3rem;border:1px solid transparent;transition:all .2s}.nav-links a:hover{color:#fff;background:rgba(255,255,255,.07)}.nav-links a.active{color:#c4b5fd;border-color:rgba(124,58,237,.3);background:rgba(124,58,237,.1)}.page{position:relative;z-index:1;max-width:1100px;margin:0 auto;padding:2rem 1rem 4rem}.page-header{margin-bottom:2rem;display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:1rem}.page-header h2{font-size:1.6rem;font-weight:800;color:#fff;letter-spacing:-.03em}.page-header p{font-size:.82rem;color:rgba(255,255,255,.35);margin-top:.3rem}.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-bottom:2rem}.stat-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:1.3rem;transition:all .2s}.stat-card:hover{border-color:rgba(255,255,255,.13);background:rgba(255,255,255,.05)}.stat-label{font-size:.68rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:.5rem}.stat-value{font-size:2rem;font-weight:800;letter-spacing:-.04em}.stat-sub{font-size:.7rem;color:rgba(255,255,255,.25);margin-top:.2rem}.sv-total{color:#fff}.sv-low{color:#34d399}.sv-medium{color:#fb923c}.sv-high{color:#f87171}.charts-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:2rem}.chart-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;padding:1.4rem}.chart-card h3{font-size:.72rem;font-weight:700;text-transform:uppercase;letter-spacing:.09em;color:rgba(255,255,255,.3);margin-bottom:1.2rem}.chart-wrap{position:relative;height:200px}.table-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.07);border-radius:16px;overflow:hidden;margin-bottom:1rem}.table-toolbar{padding:1.1rem 1.4rem;border-bottom:1px solid rgba(255,255,255,.06);display:flex;gap:.8rem;align-items:center;flex-wrap:wrap}.table-toolbar h3{font-size:.85rem;font-weight:700;color:#fff;flex:1}.search-input{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:9px;padding:.45rem .85rem;font-size:.8rem;color:#fff;font-family:inherit;width:200px}.search-input::placeholder{color:rgba(255,255,255,.25)}.search-input:focus{outline:none;border-color:rgba(167,139,250,.4)}.filter-select{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:9px;padding:.45rem .85rem;font-size:.8rem;color:#fff;font-family:inherit;cursor:pointer}.filter-select option{background:#1a1030}.table-wrap{overflow-x:auto}table{width:100%;border-collapse:collapse;font-size:.8rem}thead tr{background:rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.07)}th{padding:.7rem 1rem;text-align:left;font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);white-space:nowrap}td{padding:.75rem 1rem;border-bottom:1px solid rgba(255,255,255,.04);color:rgba(255,255,255,.7);white-space:nowrap}tbody tr:hover{background:rgba(255,255,255,.03)}tbody tr:last-child td{border-bottom:none}.pill{display:inline-block;padding:.2rem .75rem;border-radius:999px;font-size:.7rem;font-weight:700}.pill-low{background:rgba(16,185,129,.15);color:#34d399;border:1px solid rgba(16,185,129,.3)}.pill-medium{background:rgba(249,115,22,.15);color:#fb923c;border:1px solid rgba(249,115,22,.3)}.pill-high{background:rgba(239,68,68,.15);color:#f87171;border:1px solid rgba(239,68,68,.3)}.del-btn{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.2);color:#f87171;padding:.25rem .65rem;border-radius:7px;font-size:.7rem;cursor:pointer;transition:all .2s}.del-btn:hover{background:rgba(239,68,68,.25)}.empty{text-align:center;padding:3rem;color:rgba(255,255,255,.25);font-size:.85rem}.db-badge{display:inline-flex;align-items:center;gap:.4rem;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);color:#34d399;padding:.3rem .9rem;border-radius:999px;font-size:.72rem;font-weight:600}.db-dot{width:6px;height:6px;border-radius:50%;background:#34d399;animation:pulse 2s infinite}@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}.btn{padding:.45rem 1rem;border-radius:9px;text-decoration:none;font-weight:600;font-size:.78rem;border:1px solid transparent;cursor:pointer;transition:all .2s}.btn-purple{background:linear-gradient(135deg,#7c3aed,#8b5cf6);color:#fff}.btn-ghost{background:rgba(255,255,255,.06);color:rgba(255,255,255,.65);border-color:rgba(255,255,255,.1)}.btn-ghost:hover{background:rgba(255,255,255,.1);color:#fff}footer{position:relative;z-index:1;text-align:center;padding:1.5rem;font-size:.7rem;color:rgba(255,255,255,.18);border-top:1px solid rgba(255,255,255,.05)}footer strong{color:rgba(255,255,255,.35)}</style></head>
+<body>
+<nav class="navbar"><div class="nav-brand"><div class="nav-logo">🎗️</div><div style="margin-left:.5rem"><h1>CervixGuard AI</h1><span>Clinical Decision Support System</span></div></div><div class="nav-links"><a href="/">Home</a><a href="/dashboard" class="active">Dashboard</a><a href="/vaccine">Vaccine</a></div></nav>
+<div class="page">
+<div class="page-header"><div><h2>📊 Analytics Dashboard</h2><p>All predictions stored in SQLite database</p></div><div style="display:flex;align-items:center;gap:.8rem;flex-wrap:wrap"><span class="db-badge"><span class="db-dot"></span>SQLite Connected</span><a href="/" class="btn btn-purple">+ New Assessment</a></div></div>
+<div class="stats-grid">
+  <div class="stat-card"><div class="stat-label">Total Assessments</div><div class="stat-value sv-total">{{ total }}</div><div class="stat-sub">All time records</div></div>
+  <div class="stat-card"><div class="stat-label">Low Risk</div><div class="stat-value sv-low">{{ risk_counts['Low Risk'] }}</div><div class="stat-sub">{% if total > 0 %}{{ ((risk_counts['Low Risk'] / total) * 100) | round(1) }}% of total{% else %}0%{% endif %}</div></div>
+  <div class="stat-card"><div class="stat-label">Medium Risk</div><div class="stat-value sv-medium">{{ risk_counts['Medium Risk'] }}</div><div class="stat-sub">{% if total > 0 %}{{ ((risk_counts['Medium Risk'] / total) * 100) | round(1) }}% of total{% else %}0%{% endif %}</div></div>
+  <div class="stat-card"><div class="stat-label">High Risk</div><div class="stat-value sv-high">{{ risk_counts['High Risk'] }}</div><div class="stat-sub">{% if total > 0 %}{{ ((risk_counts['High Risk'] / total) * 100) | round(1) }}% of total{% else %}0%{% endif %}</div></div>
+</div>
+{% if total > 0 %}
+<div class="charts-row">
+  <div class="chart-card"><h3>Risk Distribution</h3><div class="chart-wrap"><canvas id="donutChart"></canvas></div></div>
+  <div class="chart-card"><h3>Assessments Over Time</h3><div class="chart-wrap"><canvas id="lineChart"></canvas></div></div>
+</div>
+{% endif %}
+<div class="table-card">
+  <div class="table-toolbar">
+    <h3>🗄️ Database Records</h3>
+    <input class="search-input" type="text" id="searchInput" placeholder="Search patient..." oninput="filterTable()"/>
+    <select class="filter-select" id="riskFilter" onchange="filterTable()"><option value="all">All Risks</option><option value="Low Risk">Low Risk</option><option value="Medium Risk">Medium Risk</option><option value="High Risk">High Risk</option></select>
+    <button class="btn btn-ghost" onclick="window.print()">🖨️ Print</button>
+  </div>
+  {% if history %}
+  <div class="table-wrap"><table id="recordsTable">
+    <thead><tr><th>ID</th><th>Patient Name</th><th>Age</th><th>Partners</th><th>Smokes</th><th>STDs</th><th>HPV</th><th>Risk Level</th><th>Confidence</th><th>Timestamp</th><th>Action</th></tr></thead>
+    <tbody id="tableBody">
+    {% for rec in history %}
+    <tr data-risk="{{ rec.prediction }}" data-name="{{ rec.patient_name | lower }}">
+      <td style="color:rgba(255,255,255,.3)">#{{ rec.id }}</td>
+      <td style="font-weight:600;color:#fff">{{ rec.patient_name }}</td>
+      <td>{{ rec.age | int }}</td>
+      <td>{{ rec.sexual_partners | int }}</td>
+      <td>{{ "Yes" if rec.smokes == 1 else "No" }}</td>
+      <td>{{ rec.stds_number | int }}</td>
+      <td>{{ "Yes" if rec.stds_hpv == 1 else "No" }}</td>
+      <td>{% if rec.prediction == "High Risk" %}<span class="pill pill-high">🔴 High Risk</span>{% elif rec.prediction == "Medium Risk" %}<span class="pill pill-medium">🟠 Medium Risk</span>{% else %}<span class="pill pill-low">🟢 Low Risk</span>{% endif %}</td>
+      <td>{{ rec.confidence }}</td>
+      <td style="color:rgba(255,255,255,.35);font-size:.72rem">{{ rec.timestamp }}</td>
+      <td><button class="del-btn" onclick="deleteRecord({{ rec.id }}, this)">🗑 Delete</button></td>
+    </tr>
+    {% endfor %}
+    </tbody>
+  </table></div>
+  {% else %}
+  <div class="empty">No records yet. Submit a risk assessment to see data here.</div>
+  {% endif %}
+</div>
+</div>
+<footer><strong>CervixGuard AI</strong> &nbsp;·&nbsp; Dept. of CSE &nbsp;·&nbsp; Acharya Institute of Technology &nbsp;·&nbsp; SQLite DB</footer>
+<script>
+{% if total > 0 %}
+new Chart(document.getElementById('donutChart').getContext('2d'),{type:'doughnut',data:{labels:['Low Risk','Medium Risk','High Risk'],datasets:[{data:[{{ risk_counts['Low Risk'] }},{{ risk_counts['Medium Risk'] }},{{ risk_counts['High Risk'] }}],backgroundColor:['rgba(16,185,129,.7)','rgba(249,115,22,.7)','rgba(239,68,68,.7)'],borderColor:['#10b981','#f97316','#ef4444'],borderWidth:1.5}]},options:{cutout:'65%',plugins:{legend:{position:'bottom',labels:{color:'rgba(255,255,255,.5)',font:{size:11},padding:16}}}}});
+const history={{ history | tojson }};
+const dc={};
+history.forEach(r=>{const d=r.timestamp?r.timestamp.split(' ')[0]:'Unknown';dc[d]=(dc[d]||0)+1;});
+const sd=Object.keys(dc).sort();
+new Chart(document.getElementById('lineChart').getContext('2d'),{type:'line',data:{labels:sd,datasets:[{label:'Assessments',data:sd.map(d=>dc[d]),borderColor:'#8b5cf6',backgroundColor:'rgba(139,92,246,.1)',tension:0.4,fill:true,pointBackgroundColor:'#8b5cf6',pointRadius:4}]},options:{plugins:{legend:{display:false}},scales:{x:{ticks:{color:'rgba(255,255,255,.3)',font:{size:10}},grid:{color:'rgba(255,255,255,.05)'}},y:{ticks:{color:'rgba(255,255,255,.3)',font:{size:10},stepSize:1},grid:{color:'rgba(255,255,255,.05)'}}}}});
+{% endif %}
+function filterTable(){
+  const s=document.getElementById('searchInput').value.toLowerCase();
+  const r=document.getElementById('riskFilter').value;
+  document.querySelectorAll('#tableBody tr').forEach(row=>{
+    const n=row.dataset.name||'';
+    const rv=row.dataset.risk||'';
+    row.style.display=(n.includes(s)&&(r==='all'||rv===r))?'':'none';
+  });
+}
+function deleteRecord(id,btn){
+  if(!confirm('Delete record #'+id+'? This cannot be undone.'))return;
+  fetch('/api/delete/'+id,{method:'DELETE'}).then(r=>r.json()).then(data=>{
+    if(data.success){btn.closest('tr').remove();}
+    else{alert('Delete failed: '+data.error);}
+  }).catch(()=>alert('Network error.'));
+}
+</script>
+</body></html>

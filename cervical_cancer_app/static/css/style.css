@@ -1,0 +1,340 @@
+/* ─────────────────────────────────────────────────────────────────
+   style.css  —  CervixGuard AI
+   ───────────────────────────────────────────────────────────────── */
+
+/* ── Reset ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body   { font-family: 'Inter', sans-serif; background: #f8fafc; color: #1e293b; line-height: 1.6; }
+a      { text-decoration: none; color: inherit; }
+img    { display: block; max-width: 100%; }
+
+/* ── Navbar ─────────────────────────────────────────────────────── */
+.navbar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 2rem; height: 64px;
+  background: #fff; border-bottom: 1px solid #e2e8f0;
+  position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+.nav-brand { display: flex; align-items: center; gap: .5rem; font-size: 1.1rem; font-weight: 700; color: #6d28d9; }
+.nav-icon  { font-size: 1.4rem; }
+.nav-links { display: flex; gap: 1.2rem; }
+.nav-links a {
+  font-size: .88rem; color: #64748b; font-weight: 500;
+  padding: .3rem .7rem; border-radius: 6px; transition: all .18s;
+}
+.nav-links a:hover, .nav-links a.active { color: #6d28d9; background: #f3f0ff; }
+
+/* ── Hero ───────────────────────────────────────────────────────── */
+.hero {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 4rem 3rem 3rem; gap: 2rem; flex-wrap: wrap;
+  background: linear-gradient(135deg, #1e1b4b 0%, #4c1d95 55%, #6d28d9 100%);
+  color: #fff;
+}
+.hero-content { max-width: 580px; }
+.hero-badge {
+  display: inline-block; background: rgba(255,255,255,.15);
+  padding: .28rem 1rem; border-radius: 20px; font-size: .8rem;
+  letter-spacing: .05em; margin-bottom: 1rem;
+}
+.hero h1   { font-size: 2.7rem; font-weight: 700; line-height: 1.2; margin-bottom: 1rem; }
+.gradient-text {
+  background: linear-gradient(90deg, #a78bfa, #f472b6);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.hero p { color: rgba(255,255,255,.82); font-size: 1rem; margin-bottom: 2rem; }
+.hero-stats { display: flex; align-items: center; gap: 1.5rem; }
+.stat { display: flex; flex-direction: column; }
+.stat-num { font-size: 2rem; font-weight: 700; }
+.stat-lbl { font-size: .73rem; color: rgba(255,255,255,.6); text-transform: uppercase; letter-spacing: .08em; }
+.stat-divider { width: 1px; height: 38px; background: rgba(255,255,255,.25); }
+
+/* Risk Ring */
+.hero-visual { display: flex; justify-content: center; }
+.risk-ring { position: relative; width: 200px; height: 200px; display: flex; align-items: center; justify-content: center; }
+.ring { position: absolute; border-radius: 50%; border: 2px solid rgba(255,255,255,.15); animation: pulse 3s infinite; }
+.ring-outer { width: 200px; height: 200px; animation-delay: 0s; }
+.ring-mid   { width: 148px; height: 148px; animation-delay: .5s; }
+.ring-inner { width: 96px;  height: 96px;  border-color: rgba(167,139,250,.5); animation-delay: 1s; }
+.ring-label { font-size: .85rem; font-weight: 700; text-align: center; color: #a78bfa; }
+@keyframes pulse { 0%,100%{transform:scale(1);opacity:.6} 50%{transform:scale(1.06);opacity:1} }
+
+/* ── Form Section ───────────────────────────────────────────────── */
+.form-section { display: flex; gap: 2rem; padding: 3rem; align-items: flex-start; flex-wrap: wrap; }
+.form-container {
+  flex: 1; min-width: 340px; background: #fff;
+  border-radius: 16px; padding: 2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.form-header { margin-bottom: 1.8rem; }
+.form-header h2 { font-size: 1.45rem; font-weight: 700; margin-bottom: .35rem; }
+.form-header p  { color: #64748b; font-size: .88rem; }
+
+.error-banner {
+  background: #fee2e2; color: #b91c1c; border: 1px solid #fca5a5;
+  border-radius: 8px; padding: .7rem 1rem; margin-bottom: 1.2rem; font-size: .88rem;
+}
+
+.form-group-title {
+  display: flex; align-items: center; gap: .5rem;
+  font-weight: 600; color: #4c1d95; font-size: .88rem;
+  margin: 1.6rem 0 .8rem; border-bottom: 1px solid #f1f5f9; padding-bottom: .4rem;
+}
+.group-icon { font-size: 1.1rem; }
+
+.form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.field-wrap { display: flex; flex-direction: column; gap: .35rem; }
+.field-wrap label { font-size: .83rem; font-weight: 500; color: #374151; }
+.hint { color: #94a3b8; font-weight: 400; }
+
+.field-wrap input,
+.field-wrap select {
+  padding: .6rem .9rem; border: 1.5px solid #e2e8f0; border-radius: 8px;
+  font-size: .9rem; font-family: 'Inter', sans-serif;
+  background: #fff; color: #1e293b; transition: border-color .2s, box-shadow .2s;
+}
+.field-wrap input:focus,
+.field-wrap select:focus {
+  outline: none; border-color: #7c3aed;
+  box-shadow: 0 0 0 3px rgba(124,58,237,.12);
+}
+
+.submit-btn {
+  display: flex; align-items: center; justify-content: center; gap: .6rem;
+  width: 100%; margin-top: 2rem; padding: .85rem;
+  background: linear-gradient(135deg, #6d28d9, #4f46e5);
+  color: #fff; border: none; border-radius: 10px;
+  font-size: 1rem; font-weight: 600; cursor: pointer; font-family: 'Inter', sans-serif;
+  transition: opacity .2s, transform .15s;
+}
+.submit-btn:hover   { opacity: .9; transform: translateY(-1px); }
+.submit-btn:active  { transform: translateY(0); }
+.submit-btn:disabled{ opacity: .7; cursor: not-allowed; transform: none; }
+
+/* Info sidebar cards */
+.info-cards { display: flex; flex-direction: column; gap: 1rem; width: 255px; flex-shrink: 0; }
+.info-card {
+  display: flex; align-items: flex-start; gap: .9rem;
+  background: #fff; border-radius: 12px; padding: 1rem 1.1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,.07);
+}
+.ic-icon {
+  width: 40px; height: 40px; border-radius: 10px; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem;
+}
+.info-card strong { font-size: .88rem; font-weight: 600; }
+.info-card p      { font-size: .79rem; color: #64748b; margin-top: .15rem; }
+
+/* ── Result Page ────────────────────────────────────────────────── */
+.result-section    { padding: 3rem; }
+.result-container  { max-width: 900px; margin: 0 auto; }
+
+.result-banner {
+  display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap;
+  background: #fff; border-radius: 16px; padding: 1.8rem 2rem;
+  border-left: 6px solid #e2e8f0;           /* colour set inline */
+  box-shadow: 0 4px 14px rgba(0,0,0,.08); margin-bottom: 2rem;
+}
+.result-icon { font-size: 3rem; flex-shrink: 0; }
+.result-meta { flex: 1; min-width: 160px; }
+.result-greeting   { color: #64748b; font-size: .88rem; margin-bottom: .25rem; }
+.result-label      { font-size: 2rem; font-weight: 800; line-height: 1.1; }
+.result-confidence { color: #64748b; font-size: .88rem; margin-top: .3rem; }
+
+.result-gauge { flex-shrink: 0; }
+.result-gauge svg { display: block; }
+
+.result-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  margin-bottom: 2rem;
+}
+.rec-card {
+  background: #fff; border-radius: 12px; padding: 1.4rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+}
+.full-width { grid-column: 1 / -1; }
+
+.rec-card-header {
+  display: flex; align-items: center; gap: .45rem;
+  font-weight: 600; font-size: .93rem; margin-bottom: .8rem; color: #1e293b;
+}
+.rec-text { color: #475569; font-size: .9rem; line-height: 1.55; }
+.hpv-link {
+  display: inline-block; margin-top: .85rem;
+  color: #6d28d9; font-weight: 600; font-size: .84rem;
+}
+.hpv-link:hover { text-decoration: underline; }
+
+.lifestyle-list { list-style: none; display: flex; flex-direction: column; gap: .55rem; }
+.lifestyle-list li {
+  display: flex; align-items: flex-start; gap: .5rem;
+  color: #475569; font-size: .9rem;
+}
+.lifestyle-list li::before { content: "→"; color: #7c3aed; font-weight: 700; flex-shrink: 0; }
+
+.input-summary-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px,1fr)); gap: .55rem; }
+.summary-item {
+  display: flex; flex-direction: column;
+  background: #f8fafc; border-radius: 8px; padding: .55rem .8rem;
+}
+.summary-key { font-size: .7rem; color: #94a3b8; font-weight: 500; margin-bottom: .15rem; }
+.summary-val { font-size: .93rem; font-weight: 600; color: #1e293b; }
+
+.result-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 1.4rem; }
+.btn-primary {
+  padding: .7rem 1.4rem;
+  background: linear-gradient(135deg, #6d28d9, #4f46e5);
+  color: #fff; border-radius: 8px; font-weight: 600; font-size: .9rem;
+  transition: opacity .2s; display: inline-block;
+}
+.btn-primary:hover { opacity: .9; }
+.btn-secondary {
+  padding: .7rem 1.4rem; background: #f1f5f9;
+  color: #374151; border-radius: 8px; font-weight: 600; font-size: .9rem;
+  transition: background .2s; display: inline-block;
+}
+.btn-secondary:hover { background: #e2e8f0; }
+
+.disclaimer { font-size: .79rem; color: #94a3b8; text-align: center; }
+
+/* ── Dashboard ──────────────────────────────────────────────────── */
+.dashboard-section   { padding: 3rem; }
+.dashboard-container { max-width: 1100px; margin: 0 auto; }
+.dash-header         { margin-bottom: 2rem; }
+.dash-header h1      { font-size: 1.75rem; font-weight: 700; margin-bottom: .3rem; }
+.dash-header p       { color: #64748b; }
+
+.stats-row { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 1.2rem; margin-bottom: 2rem; }
+.stat-card {
+  background: #fff; border-radius: 12px; padding: 1.4rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+}
+.stat-card-num { font-size: 2.4rem; font-weight: 800; color: #1e293b; }
+.stat-card-lbl { font-size: .84rem; color: #64748b; font-weight: 500; margin-top: .2rem; }
+
+.charts-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem; }
+.chart-card {
+  background: #fff; border-radius: 12px; padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+}
+.chart-card h3 { font-size: .93rem; font-weight: 600; margin-bottom: 1.1rem; color: #374151; }
+.chart-wrap    { position: relative; height: 260px; }
+.chart-wrap canvas { max-height: 260px; }
+
+.table-card {
+  background: #fff; border-radius: 12px; padding: 1.5rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+}
+.table-card h3 { font-size: .93rem; font-weight: 600; margin-bottom: 1.1rem; color: #374151; }
+
+.table-scroll  { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.dash-table    { width: 100%; border-collapse: collapse; font-size: .88rem; min-width: 500px; }
+.dash-table th {
+  text-align: left; padding: .65rem 1rem;
+  background: #f8fafc; color: #64748b;
+  font-weight: 600; font-size: .78rem;
+  text-transform: uppercase; letter-spacing: .05em;
+}
+.dash-table td { padding: .72rem 1rem; border-bottom: 1px solid #f1f5f9; vertical-align: middle; }
+.dash-table tbody tr:last-child td { border-bottom: none; }
+.dash-table tbody tr:hover td { background: #fafafa; }
+
+.badge {
+  display: inline-block; padding: .22rem .7rem;
+  border-radius: 20px; font-size: .76rem; font-weight: 700;
+}
+.badge-low    { background: #dcfce7; color: #16a34a; }
+.badge-medium { background: #fef9c3; color: #ca8a04; }
+.badge-high   { background: #fee2e2; color: #dc2626; }
+
+.empty-state { text-align: center; color: #94a3b8; padding: 3rem 1rem; }
+.empty-state p { margin-bottom: .5rem; font-size: 1rem; }
+.empty-state a { color: #6d28d9; font-weight: 600; }
+
+/* ── Vaccine Page ───────────────────────────────────────────────── */
+.vaccine-section   { padding: 3rem; }
+.vaccine-container { max-width: 800px; margin: 0 auto; }
+
+.vaccine-hero {
+  display: flex; align-items: center; gap: 1.5rem;
+  background: linear-gradient(135deg, #1e1b4b, #6d28d9);
+  color: #fff; border-radius: 16px; padding: 2rem; margin-bottom: 2rem;
+}
+.vaccine-icon   { font-size: 3rem; flex-shrink: 0; }
+.vaccine-hero h1{ font-size: 1.55rem; font-weight: 700; margin-bottom: .4rem; }
+.vaccine-hero p { color: rgba(255,255,255,.82); font-size: .9rem; }
+
+.hpv-info-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-bottom: 2rem; }
+.hpv-info-card {
+  background: #fff; border-radius: 12px; padding: 1.2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,.07); text-align: center;
+}
+.hpv-dose-num { font-size: 1.25rem; font-weight: 800; color: #6d28d9; margin-bottom: .45rem; }
+.hpv-info-card p { font-size: .82rem; color: #64748b; }
+
+.vaccine-form-card {
+  background: #fff; border-radius: 16px; padding: 2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08); margin-bottom: 2rem;
+}
+.vaccine-form-card h2 { font-size: 1.15rem; font-weight: 700; margin-bottom: 1.4rem; }
+
+.vaccine-facts {
+  background: #fff; border-radius: 16px; padding: 2rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.07);
+}
+.vaccine-facts h3 { font-size: .98rem; font-weight: 700; margin-bottom: 1.1rem; }
+.facts-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.fact-item  { display: flex; align-items: flex-start; gap: .8rem; }
+.fact-item span { font-size: 1.4rem; flex-shrink: 0; }
+.fact-item p    { font-size: .84rem; color: #475569; }
+
+/* Success state */
+.vaccine-success {
+  text-align: center; background: #fff; border-radius: 16px;
+  padding: 4rem 2rem; box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+.success-icon        { font-size: 4rem; margin-bottom: 1rem; }
+.vaccine-success h2  { font-size: 1.75rem; font-weight: 700; color: #16a34a; margin-bottom: .6rem; }
+.vaccine-success p   { color: #64748b; margin-bottom: 2rem; }
+.success-actions     { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+/* ── Footer ─────────────────────────────────────────────────────── */
+.footer {
+  background: #1e293b; color: rgba(255,255,255,.72);
+  text-align: center; padding: 1.5rem; font-size: .82rem;
+}
+.footer-note { color: rgba(255,255,255,.4); font-size: .74rem; margin-top: .3rem; }
+
+/* ── Responsive ─────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .charts-row    { grid-template-columns: 1fr; }
+  .result-grid   { grid-template-columns: 1fr; }
+  .full-width    { grid-column: 1 / -1; }
+}
+
+@media (max-width: 700px) {
+  .hero          { padding: 2rem 1.5rem; flex-direction: column; }
+  .hero h1       { font-size: 2rem; }
+  .hero-visual   { display: none; }
+  .form-section  { padding: 1.5rem; flex-direction: column; }
+  .info-cards    { width: 100%; flex-direction: row; flex-wrap: wrap; }
+  .info-card     { flex: 1; min-width: 200px; }
+  .result-section{ padding: 1.5rem; }
+  .result-banner { flex-direction: column; text-align: center; }
+  .result-gauge  { margin: 0 auto; }
+  .result-actions{ flex-direction: column; }
+  .btn-primary,
+  .btn-secondary { text-align: center; }
+  .dashboard-section { padding: 1.5rem; }
+  .stats-row     { grid-template-columns: 1fr 1fr; }
+  .hpv-info-grid { grid-template-columns: 1fr; }
+  .facts-grid    { grid-template-columns: 1fr; }
+  .vaccine-section { padding: 1.5rem; }
+  .vaccine-hero  { flex-direction: column; text-align: center; }
+  .navbar        { padding: 0 1rem; }
+  .nav-links     { gap: .6rem; }
+  .nav-links a   { font-size: .8rem; padding: .25rem .5rem; }
+}

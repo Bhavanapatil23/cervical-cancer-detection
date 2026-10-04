@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>HPV Vaccine Reminder — CervixGuard AI</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-brand">
+    <span class="nav-icon">🎗️</span>
+    <span>CervixGuard AI</span>
+  </div>
+  <div class="nav-links">
+    <a href="/">Assessment</a>
+    <a href="/dashboard">Dashboard</a>
+    <a href="/vaccine" class="active">HPV Reminder</a>
+  </div>
+</nav>
+
+<section class="vaccine-section">
+  <div class="vaccine-container">
+
+    {% if success %}
+    <!-- Success State -->
+    <div class="vaccine-success">
+      <div class="success-icon">💉✅</div>
+      <h2>Reminder Set Successfully!</h2>
+      <p>Your HPV vaccine dose reminder has been saved. We will notify you on the scheduled date.</p>
+      <div class="success-actions">
+        <a href="/vaccine" class="btn-primary">Set Another Reminder</a>
+        <a href="/" class="btn-secondary">New Assessment</a>
+      </div>
+    </div>
+
+    {% else %}
+
+    <!-- Info Banner -->
+    <div class="vaccine-hero">
+      <div class="vaccine-icon">💉</div>
+      <div>
+        <h1>HPV Vaccine Dose Reminder</h1>
+        <p>The HPV vaccine is one of the most effective ways to prevent cervical cancer. Set a reminder for your upcoming dose.</p>
+      </div>
+    </div>
+
+    <!-- HPV Info Cards -->
+    <div class="hpv-info-grid">
+      <div class="hpv-info-card">
+        <div class="hpv-dose-num">Dose 1</div>
+        <p>First dose at any time. Recommended for ages 9–45.</p>
+      </div>
+      <div class="hpv-info-card">
+        <div class="hpv-dose-num">Dose 2</div>
+        <p>1–2 months after Dose 1. Completes protection for ages 9–14 (2-dose schedule).</p>
+      </div>
+      <div class="hpv-info-card">
+        <div class="hpv-dose-num">Dose 3</div>
+        <p>6 months after Dose 1 for ages 15+. Required for full immunization.</p>
+      </div>
+    </div>
+
+    <!-- Reminder Form -->
+    <div class="vaccine-form-card">
+      <h2>📅 Schedule Your Reminder</h2>
+      <form action="/vaccine" method="POST">
+        <div class="form-grid">
+          <div class="field-wrap">
+            <label>Full Name</label>
+            <input type="text" name="name" placeholder="Your name" required/>
+          </div>
+          <div class="field-wrap">
+            <label>Email Address</label>
+            <input type="email" name="email" placeholder="your@email.com" required/>
+          </div>
+          <div class="field-wrap">
+            <label>Dose Number</label>
+            <select name="dose_number" required>
+              <option value="1">Dose 1 — First dose</option>
+              <option value="2">Dose 2 — Second dose</option>
+              <option value="3">Dose 3 — Third dose</option>
+            </select>
+          </div>
+          <div class="field-wrap">
+            <label>Scheduled Date</label>
+            <input type="date" name="dose_date" required/>
+          </div>
+        </div>
+        <button type="submit" class="submit-btn">
+          <span>Set Reminder</span>
+          <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"/></svg>
+        </button>
+      </form>
+    </div>
+
+    <!-- Vaccine facts -->
+    <div class="vaccine-facts">
+      <h3>📌 Key Facts About HPV Vaccine</h3>
+      <div class="facts-grid">
+        <div class="fact-item"><span>🛡️</span><p>Protects against HPV types 16 & 18, which cause ~70% of cervical cancers.</p></div>
+        <div class="fact-item"><span>👧</span><p>Most effective when given before first sexual exposure (ages 9–12).</p></div>
+        <div class="fact-item"><span>✅</span><p>Safe and approved by WHO, FDA, and major health authorities worldwide.</p></div>
+        <div class="fact-item"><span>📅</span><p>Full immunization takes 2–3 doses over 6 months — don't miss your dose!</p></div>
+      </div>
+    </div>
+
+    {% endif %}
+  </div>
+</section>
+
+<footer class="footer">
+  <p>⚕️ CervixGuard AI — Acharya Institute of Technology, Dept. of CSE &nbsp;|&nbsp; BCS685 Project Phase 1</p>
+  <p class="footer-note">This tool is for educational/screening purposes only. Not a substitute for professional medical advice.</p>
+</footer>
+
+</body>
+</html>
