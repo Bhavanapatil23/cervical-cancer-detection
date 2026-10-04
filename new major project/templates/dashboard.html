@@ -1,0 +1,80 @@
+
+
+Dashboard · HTML
+{% extends "base.html" %}
+{% block title %}{{ t('nav_dashboard') }} — CervixGuard AI{% endblock %}
+{% block content %}
+ 
+<div style="padding: 24px 0 8px;">
+  <h1 style="font-size:24px;">{{ t('dashboard_title') }}</h1>
+  <p>{{ t('dashboard_sub') }}</p>
+</div>
+ 
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="stat-num">{{ total }}</div>
+    <div class="stat-label">{{ t('dashboard_title') }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" style="color:var(--success);">{{ risk_counts['Low Risk'] }}</div>
+    <div class="stat-label">{{ t('risk_tier_success') }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" style="color:var(--warning);">{{ risk_counts['Medium Risk'] }}</div>
+    <div class="stat-label">{{ t('risk_tier_warning') }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="stat-num" style="color:var(--danger);">{{ risk_counts['High Risk'] }}</div>
+    <div class="stat-label">{{ t('risk_tier_danger') }}</div>
+  </div>
+</div>
+ 
+<div class="chart-grid">
+  <div class="chart-card">
+    <canvas id="riskDonut" data-counts='{{ risk_counts | tojson }}'></canvas>
+  </div>
+  <div class="chart-card">
+    <canvas id="riskTrend" data-points='{{ trend_points | tojson }}'></canvas>
+  </div>
+</div>
+ 
+<div class="card">
+  <input type="text" id="history-search" placeholder="{{ t('search_placeholder') }}"
+         style="width:100%; padding:11px 14px; border-radius:10px; border:1px solid var(--border); background:var(--surface); color:var(--text); margin-bottom:16px;">
+ 
+  <table class="data">
+    <thead>
+      <tr>
+        <th>{{ t('input_patient_name') }}</th>
+        <th>{{ t('input_age') }}</th>
+        <th>{{ t('nav_assess') }}</th>
+        <th>{{ t('result_probability') }}</th>
+        <th class="mono">{{ t('result_generated') }}</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="history-body">
+      {% for r in history %}
+      <tr id="row-{{ r.id }}" data-name="{{ r.patient_name | lower }}">
+        <td>{{ r.patient_name }}{% if r.urgent_flag %} ⚠{% endif %}</td>
+        <td>{{ r.age | int }}</td>
+        <td>
+          {% set cls = 'badge-danger' if r.prediction=='High Risk' else ('badge-warning' if r.prediction=='Medium Risk' else 'badge-success') %}
+          <span class="badge {{ cls }}">{{ r.prediction }}</span>
+        </td>
+        <td>{{ r.confidence }}</td>
+        <td class="mono" style="font-size:12.5px;color:var(--text-muted);">{{ r.timestamp }}</td>
+        <td style="text-align:right; white-space:nowrap;">
+          <a href="{{ url_for('download_report', record_id=r.id) }}" class="btn btn-ghost btn-sm">{{ t('btn_download_pdf') }}</a>
+          <button class="btn btn-danger-outline" data-delete-id="{{ r.id }}">{{ t('action_delete') }}</button>
+        </td>
+      </tr>
+      {% else %}
+      <tr><td colspan="6" style="text-align:center; color:var(--text-faint); padding:24px;">{{ t('history_empty') }}</td></tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+ 
+{% endblock %}
+ 

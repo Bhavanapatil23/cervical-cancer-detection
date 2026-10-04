@@ -1,0 +1,79 @@
+
+
+Result · HTML
+{% extends "base.html" %}
+{% block title %}{{ t('result_recommendations') }} — CervixGuard AI{% endblock %}
+{% block content %}
+ 
+{% if error %}
+  <div class="card" style="max-width:520px;margin:40px auto;text-align:center;">
+    <p>{{ error }}</p>
+    <a href="{{ url_for('index') }}" class="btn btn-primary">{{ t('btn_back') }}</a>
+  </div>
+{% else %}
+ 
+<div class="form-shell" style="max-width: 680px;">
+  <div class="card">
+    <p class="mono" style="font-size:12.5px; text-transform:uppercase; letter-spacing:.05em;">
+      {{ t('result_patient') }}: <strong style="color:var(--text);">{{ patient_name }}</strong>
+    </p>
+ 
+    <div class="risk-ring-wrap">
+      <div class="risk-ring tier-{{ risk_class }}">
+        <svg viewBox="0 0 190 190">
+          <circle class="track" cx="95" cy="95" r="80"></circle>
+          <circle class="fill" cx="95" cy="95" r="80" data-pct="{{ prob_at_risk }}"></circle>
+        </svg>
+        <div class="risk-ring-label">
+          <div class="risk-ring-pct">{{ prob_at_risk }}%</div>
+          <div class="risk-ring-sub">{{ t('result_probability') }}</div>
+        </div>
+      </div>
+      <div class="risk-tier">{{ t('risk_tier_' ~ risk_class) }}</div>
+    </div>
+ 
+    {% if input_data.symptom_bleeding or input_data.symptom_postcoital or input_data.symptom_discharge or input_data.symptom_pelvic_pain or input_data.symptom_pain_intercourse %}
+    <div class="alert-box">⚠ {{ t('result_symptom_alert') }}</div>
+    {% endif %}
+ 
+    <div class="action-row">
+      <a href="{{ url_for('download_report', record_id=record_id) }}" class="btn btn-primary">{{ t('btn_download_pdf') }}</a>
+      <button id="email-summary" class="btn btn-ghost"
+              data-patient="{{ patient_name }}" data-risk="{{ prediction }}" data-confidence="{{ confidence }}">
+        {{ t('btn_email') }}
+      </button>
+      <button onclick="window.print()" class="btn btn-ghost">{{ t('btn_print') }}</button>
+    </div>
+  </div>
+ 
+  <div class="card" style="margin-top: 16px;">
+    <h3>{{ t('result_recommendations') }}</h3>
+    <ul class="rec-list">
+      {% for r in recommendations %}<li>{{ r }}</li>{% endfor %}
+    </ul>
+  </div>
+ 
+  <div class="card" style="margin-top: 16px;">
+    <h3>{{ t('result_tests') }}</h3>
+    <table class="data">
+      <thead><tr><th>{{ t('result_tests') }}</th><th>Priority</th><th>Frequency</th></tr></thead>
+      <tbody>
+        {% for tst in testing_recs %}
+        <tr>
+          <td>{{ tst.icon }} {{ tst.name }}</td>
+          <td><span class="badge {{ 'badge-danger' if tst.priority in ['Urgent','High'] else ('badge-warning' if tst.priority=='Medium' else 'badge-success') }}">{{ tst.priority }}</span></td>
+          <td style="color:var(--text-muted);">{{ tst.frequency }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+ 
+  <div style="text-align:center; margin-top: 24px;">
+    <a href="{{ url_for('index') }}" class="btn btn-ghost">{{ t('btn_new_assessment') }}</a>
+  </div>
+</div>
+ 
+{% endif %}
+{% endblock %}
+ 

@@ -1,0 +1,61 @@
+
+
+Base · HTML
+<!DOCTYPE html>
+<html lang="{{ current_lang }}">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}CervixGuard AI{% endblock %}</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+{% block head %}{% endblock %}
+</head>
+<body>
+ 
+<script>
+  (function(){ var t = localStorage.getItem('cg-theme'); if (t === 'dark') document.documentElement.setAttribute('data-theme','dark'); })();
+</script>
+ 
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="{{ url_for('index') }}" class="brand">
+      <span class="brand-mark"></span> CervixGuard AI
+    </a>
+    <div class="nav-links">
+      <a href="{{ url_for('index') }}" class="nav-link {{ 'active' if active=='assess' }}">{{ t('nav_assess') }}</a>
+      <a href="{{ url_for('dashboard') }}" class="nav-link {{ 'active' if active=='dashboard' }}">{{ t('nav_dashboard') }}</a>
+      <a href="{{ url_for('vaccine') }}" class="nav-link {{ 'active' if active=='vaccine' }}">{{ t('nav_vaccine') }}</a>
+    </div>
+    <div class="nav-tools">
+      <div class="lang-switch">
+        {% for code, name in lang_names.items() %}
+          <a href="{{ url_for('set_lang', code=code) }}" lang="{{ code }}" class="{{ 'active' if current_lang==code }}">{{ name }}</a>
+        {% endfor %}
+      </div>
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode" type="button">☾</button>
+      {% if current_user %}
+        <a href="{{ url_for('logout') }}" class="btn btn-ghost btn-sm">{{ t('nav_logout') }}</a>
+      {% else %}
+        <a href="{{ url_for('login') }}" class="btn btn-ghost btn-sm">{{ t('nav_login') }}</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+ 
+<div class="container" style="padding-top: 24px;">
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      {% for m in messages %}<div class="flash">{{ m }}</div>{% endfor %}
+    {% endif %}
+  {% endwith %}
+  {% block content %}{% endblock %}
+</div>
+ 
+<footer class="footer">{{ t('footer_disclaimer') }}</footer>
+ 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block scripts %}{% endblock %}
+</body>
+</html>
+ 
